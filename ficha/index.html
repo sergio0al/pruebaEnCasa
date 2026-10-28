@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a9b5133090.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    header{
+        height: 100px;
+        background-color: brown;
+    }
+    main{
+        height: calc(100vh - 190px);
+    }
+    #jugadorA{
+        --x: 0;
+        --y: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: red;
+        position: relative;
+        top: var(--y);
+        left: var(--x);
+        transition: all 0.5s ease;
+    }
+
+    #jugadorB{
+        --x: 0;
+        --y: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: blue;
+        position: relative;
+        top: var(--y);
+        left: var(--x);
+        transition: all 0.5s ease;
+    }
+
+    footer{
+        background-color: brown;
+        height: 90px;
+    }
+
+    
+    
+    #siguiente{
+        width: 200px;
+        height: 40px;
+        background-color: rgb(116, 116, 116);
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        color: white;
+        &:hover #filtro{
+            transform: translateX(0);
+        }
+        &:hover .icon{
+            transition: 0.50s;
+            transform: translateX(0);
+        }
+    }
+
+    #filtro{
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background-color: rgb(185, 184, 184);
+        transform: translateX(-100%);
+        transition: 0.50s;
+    }
+
+    #texto{
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 0px 30px;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+    }
+
+    #flechas{
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .icon{
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 6px;
+        transform: translateX(-100%);
+    }
+
+</style>
+<body>
+    <header>
+        <h1>fichqa</h1>
+    </header>
+    <main>
+        <div id="jugadorA"></div>
+        <div id="jugadorB"></div>
+    </main>
+    <footer>
+        <p>ficha js</p>
+
+        <div id="siguiente">
+            <div id="filtro"></div>
+            <div id="texto">
+                <p>Siguiente</p>
+                <div id="flechas">
+                    <i class="fa-solid fa-arrow-right icon"></i>
+                    <i class="fa-solid fa-arrow-right icon"></i>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script>
+        const tablero = [
+            {A: {x:0, y:0}, B: {x:0, y:0}},
+            {A: {x:100, y:400}, B: {x:0, y:0}},
+            {A: {x:0, y:0}, B: {x:0, y:0}},
+            {A: {x:0, y:0}, B: {x:0, y:0}},
+            {A: {x:0, y:0}, B: {x:0, y:0}}
+        ]
+
+        const jugadorA = document.querySelector("#jugadorA")
+        let positionA = 0
+
+        const siguiente = document.querySelector("#siguiente")
+
+        siguiente.addEventListener("click",() =>{
+            positionA++
+            jugadorA.style.setProperty("--x", tablero[positionA].A.x + "px")
+            jugadorA.style.setProperty("--y", tablero[positionA].A.y + "px")
+        })
+
+        
+    </script>
+</body>
+</html>

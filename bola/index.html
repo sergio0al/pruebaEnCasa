@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    header{
+        height: 100px;
+        background-color: brown;
+    }
+    main{
+        height: calc(100vh - 150px);
+        background-color: white;
+        overflow: hidden;
+    }
+    #bola{
+        --x: 0;
+        --y: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: red;
+        position: relative;
+        top: var(--y);
+        left: var(--x);
+    }
+    footer{
+        background-color: brown;
+        height: 50px;
+    }
+</style>
+<body>
+    
+    <header>
+        <h1>Bola</h1>
+    </header>
+
+    <main>
+        <div id="bola"></div>
+    </main>
+
+    <footer>
+        <p>JS</p>
+    </footer>
+
+    <script>
+        const bola = document.querySelector("#bola")
+        const main = document.querySelector("main")
+
+        const pos = {
+            velX: 20,
+            velY: 20,
+            posX: 0,
+            posY: 0,
+        }
+
+
+        let tiempo = setInterval(() => {
+            pos.posX = pos.posX + pos.velX
+            console.log(pos.posX)
+            bola.style.setProperty("--x", pos.posX + "px")
+            if(pos.posX > main.offsetWidth - 60){pos.velX *= -1}
+            if(pos.posX < 1){pos.velX *= -1}
+
+            pos.posY = pos.posY + pos.velY
+            console.log(pos.posY)
+            bola.style.setProperty("--y", pos.posY + "px")
+            if(pos.posY > main.offsetHeight - 51){pos.velY *= -1}
+            if(pos.posY < 1){pos.velY *= -1}
+        }, 20)
+
+        clearInterval()
+
+    </script>
+</body>
+</html>
